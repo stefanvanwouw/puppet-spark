@@ -47,7 +47,7 @@ class {'spark::master':
 
 On the worker nodes:
 ```puppet
-class {'impala::worker':
+class {'spark::worker':
     master => $master_fqdn,
     require => [
         Class['your::class::that::ensures::java::is::installed'], 
