@@ -24,8 +24,8 @@ class spark::worker (
 
     file { "${install_dir}/bin/spark-worker-runner.sh":
         content => template('spark/spark-worker-runner.sh.erb'),
-        owner   => 'spark',
-        group   => 'spark',
+        owner   => 'hdfs',
+        group   => 'hdfs',
         mode    => '0744',
     }
 

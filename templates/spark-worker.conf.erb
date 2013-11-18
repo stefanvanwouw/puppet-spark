@@ -1,8 +1,8 @@
 description "Spark Worker Service script"
 start on runlevel [2345]
 stop on runlevel [06]
-setuid spark
-setgid spark
+setuid hdfs
+setgid hdfs
 console log
 chdir <%= @install_dir %>
 
