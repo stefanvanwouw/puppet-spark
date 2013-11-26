@@ -11,8 +11,8 @@ class spark (
         source  => 'puppet:///modules/spark/spark',
         mode    => '0744',
         recurse => true,
-        owner   => 'spark',
-        group   => 'spark',
+        owner   => 'root',
+        group   => 'root',
         require => User['spark'],
     }
 
@@ -20,8 +20,8 @@ class spark (
     # Create log dir for logging.
     file {'/var/log/spark':
         ensure => directory,
-        owner   => 'spark',
-        group   => 'spark',
+        owner   => 'root',
+        group   => 'root',
     }
  
 

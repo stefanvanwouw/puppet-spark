@@ -20,8 +20,8 @@ class spark::master (
 
     file { "${install_dir}/bin/spark-master-runner.sh":
         content => template('spark/spark-master-runner.sh.erb'),
-        owner   => 'spark',
-        group   => 'spark',
+        owner   => 'root',
+        group   => 'root',
         mode    => '0744',
     }
 

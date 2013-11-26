@@ -1,8 +1,8 @@
 description "Spark Master Service script"
 start on runlevel [2345]
 stop on runlevel [06]
-setuid spark
-setgid spark
+setuid root
+setgid root
 console log
 chdir <%= @install_dir %>
 
