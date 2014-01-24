@@ -1,4 +1,6 @@
 class spark (
+    $master,
+    $worker_mem,
     $install_dir
 ) {
     require spark::user
@@ -16,6 +18,23 @@ class spark (
         require => User['spark'],
     }
 
+    
+    file {"${install_dir}/conf/spark-env.sh":
+        content => template('spark/spark-env.sh.erb'),
+        mode    => '0744',
+        owner   => 'root',
+        group   => 'root',
+        require => File[$install_dir],
+    } 
+
+    file {"${install_dir}/conf/metrics.properties":
+        content => template('spark/metrics.properties.erb'),
+        mode    => '0744',
+        owner   => 'root',
+        group   => 'root',
+        require => File[$install_dir],
+    } 
+
 
     # Create log dir for logging.
     file {'/var/log/spark':
@@ -23,10 +42,9 @@ class spark (
         owner   => 'root',
         group   => 'root',
     }
- 
 
-    
-
-    
+    file {['/data0/spark', '/data1/spark']:
+        ensure => directory,
+    }
 
 }

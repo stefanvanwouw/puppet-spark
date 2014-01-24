@@ -1,0 +1,15 @@
+export SCALA_HOME=/opt/scala-2.9.3
+
+SPARK_JAVA_OPTS+=" -Dspark.local.dir=/data0/spark,/data1/spark"
+#SPARK_JAVA_OPTS+="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9012 -Dcom.sun.management.jmxremote.local.only=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
+export SPARK_JAVA_OPTS
+
+export SPARK_MEM=<%= @worker_mem %>
+export SPARK_DAEMON_MEMORY=1g
+export SPARK_LIBRARY_PATH="/usr/lib/hadoop/lib/native:$SPARK_LIBRARY_PATH"
+
+# Bind Spark's web UIs to this machine's public EC2 hostname: 
+export SPARK_PUBLIC_DNS=`wget -q -O - http://instance-data.ec2.internal/latest/meta-data/public-hostname` 
+ 
+# Set a high ulimit for large shuffles 
+ulimit -n 1000000 

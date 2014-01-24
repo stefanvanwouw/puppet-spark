@@ -2,10 +2,13 @@ class spark::master (
     $master_port = $::spark::defaults::master_port,
     $web_port    = $::spark::defaults::web_port,
     $install_dir = $::spark::defaults::install_dir,
+    $worker_mem,
 ) inherits spark::defaults {
 
     class {'spark':
+        master      => $::fqdn,
         install_dir => $install_dir,
+        worker_mem  => $worker_mem,
     }
     Class['spark'] -> Class['spark::master']
 

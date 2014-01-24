@@ -9,7 +9,10 @@ class spark::worker (
 ) inherits spark::defaults {
 
     class {'spark':
+        master      => $master,
         install_dir => $install_dir,
+        worker_mem  => $memory,
+
     }
     Class['spark'] -> Class['spark::worker']
 

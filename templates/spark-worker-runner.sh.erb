@@ -20,6 +20,5 @@ spark_rotate_log ()
 
 spark_rotate_log
 
-export SPARK_LIBRARY_PATH="/usr/lib/hadoop/lib/native:$SPARK_LIBRARY_PATH"
 
 <%= @install_dir %>/spark-class org.apache.spark.deploy.worker.Worker spark://<%= @master %>:<%= @master_port %> --work-dir <%= @scratch_dir %><% if @cores -%> --cores <%= @cores %><% end -%><% if @memory -%> --memory <%= @memory %><% end -%> >> /var/log/spark/worker.log 2>&1 < /dev/null
