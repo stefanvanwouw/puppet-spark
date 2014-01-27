@@ -1,5 +1,6 @@
 class spark::worker (
     $master,
+    $spark_service_status = 'running',
     $master_port = $::spark::defaults::master_port,
     $web_port    = $::spark::defaults::web_port,
     $install_dir = $::spark::defaults::install_dir,
@@ -34,7 +35,7 @@ class spark::worker (
 
     # The service that runs the master server. 
     service {'spark-worker': 
-        ensure   => running, 
+        ensure   => $spark_service_status, 
         provider => 'upstart',
         require  => [File['/etc/init/spark-worker.conf'], File["${install_dir}/bin/spark-worker-runner.sh"]]
     }

@@ -1,6 +1,7 @@
 export SCALA_HOME=/opt/scala-2.9.3
 
 SPARK_JAVA_OPTS+=" -Dspark.local.dir=/data0/spark,/data1/spark"
+#SPARK_JAVA_OPTS+="-XX:MaxPermSize=512m"
 #SPARK_JAVA_OPTS+="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9012 -Dcom.sun.management.jmxremote.local.only=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
 export SPARK_JAVA_OPTS
 
