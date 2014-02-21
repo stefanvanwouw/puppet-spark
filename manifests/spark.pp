@@ -27,13 +27,13 @@ class spark (
         require => File[$install_dir],
     } 
 
-    file {"${install_dir}/conf/metrics.properties":
-        content => template('spark/metrics.properties.erb'),
-        mode    => '0744',
-        owner   => 'root',
-        group   => 'root',
-        require => File[$install_dir],
-    } 
+    #file {"${install_dir}/conf/metrics.properties":
+    #    content => template('spark/metrics.properties.erb'),
+    #    mode    => '0744',
+    #    owner   => 'root',
+    #    group   => 'root',
+    #    require => File[$install_dir],
+    #} 
 
 
     # Create log dir for logging.
