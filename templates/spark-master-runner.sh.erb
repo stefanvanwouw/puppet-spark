@@ -19,4 +19,4 @@ spark_rotate_log ()
 }
 
 spark_rotate_log
-<%= @install_dir %>/spark-class org.apache.spark.deploy.master.Master --ip <%= @fqdn %> --webui-port <%= @web_port %> --port <%= @master_port %> >> /var/log/spark/master.log 2>&1 < /dev/null
+<%= @install_dir %>/bin/spark-class org.apache.spark.deploy.master.Master --ip <%= @fqdn %> --webui-port <%= @web_port %> --port <%= @master_port %> >> /var/log/spark/master.log 2>&1 < /dev/null
