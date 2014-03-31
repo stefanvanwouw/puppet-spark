@@ -1,12 +1,12 @@
-# Puppet module for Spark (0.8.0+)
+# Puppet module for Spark (0.9.0)
 
-Puppet module to install Spark (0.8.0) on your Hadoop cluster.
+Puppet module to install Spark (0.9.0) on your Hadoop cluster.
 
 
 Unfortunately no Debian packages are available for Spark, and the pre-compiled Spark versions are not compatible with CDH 4.4.0. 
-Therefore I built the Spark incubator version 0.8.0 and included the entire dist directory in the puppet module.
+Therefore I built the Spark incubator version 0.9.0 and included the entire dist directory in the puppet module.
 
-If you want to deploy another version of Spark use the following code to compile:
+If you want to deploy another version of Spark use the following code to compile (e.g. older Spark 0.8.0):
 
 
 ```bash
@@ -28,7 +28,7 @@ cp -r dist /etc/puppet/modules/spark/files/spark
 ### Dependencies not made explicit in the module itself:
 
 
-- Oracle Java 6 installed on all nodes (requirement of Spark).
+- Oracle Java 6 (7 for Spark 0.9.0+) installed on all nodes (requirement of Spark).
 - Apache HDFS should be installed (The CDH4 versions included in: https://github.com/wikimedia/puppet-cdh4 ).
 - OS should be Ubuntu/Debian for package dependencies.
 
@@ -38,6 +38,7 @@ cp -r dist /etc/puppet/modules/spark/files/spark
 On the master node:
 ```puppet
 class {'spark::master':
+    worker_mem => 'worker memory e.g. 60g',
     require => [
         Class['your::class::that::ensures::java::is::installed'], 
         Class['cdh4::hadoop']
@@ -49,6 +50,7 @@ On the worker nodes:
 ```puppet
 class {'spark::worker':
     master => $master_fqdn,
+    memory => 'worker memory e.g. 60g',
     require => [
         Class['your::class::that::ensures::java::is::installed'], 
         Class['cdh4::hadoop']
